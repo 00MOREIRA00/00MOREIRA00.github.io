@@ -1,0 +1,49 @@
+name: Publicar o hub no GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Permite rodar manualmente (ex.: depois de atualizar a spec de uma API)
+  workflow_dispatch:
+  # Atualiza as specs uma vez por dia
+  schedule:
+    - cron: '0 9 * * *'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Baixa o openapi.yaml de cada repositório listado em src/data/catalogo.json.
+      # Para repositórios privados, crie o secret SPECS_TOKEN (PAT com leitura de conteúdo).
+      - run: npm run sync-specs
+        env:
+          GITHUB_TOKEN: ${{ secrets.SPECS_TOKEN || github.token }}
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
