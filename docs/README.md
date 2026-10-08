@@ -1,11 +1,10 @@
 # Guias de manutenção do hub
 
-Estes guias explicam como publicar e adicionar conteúdo novo ao site. Eles ficam só no repositório: o
+Estes guias explicam como adicionar conteúdo novo ao site. Eles ficam só no repositório: o
 Docusaurus publica apenas `docs/api/` (gerado), então nada daqui vira página do site.
 
-| Quero... | Guia |
+| Quero adicionar... | Guia |
 | --- | --- |
-| Publicar o site no GitHub Pages com GitHub Actions | [deploy-github-pages.md](deploy-github-pages.md) |
 | Um projeto (system design, Docker ou fluxo) com página própria | [adicionar-projeto.md](adicionar-projeto.md) |
 | Uma API com referência estilo Swagger, a partir de um `openapi.yaml` | [adicionar-api.md](adicionar-api.md) |
 | Um tema em "O que estou estudando" | [adicionar-estudo.md](adicionar-estudo.md) |

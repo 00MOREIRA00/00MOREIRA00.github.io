@@ -241,6 +241,18 @@ export const ENTREVISTA: string[] = [
 ];
 
 /* ------------------------------------------------------------------ */
+/* Perfil (página Sobre)                                               */
+/* ------------------------------------------------------------------ */
+export const PERFIL = {
+  nome: 'Roberto Neto',
+  cargo: 'Desenvolvedor Backend Pleno',
+  anosExperiencia: 4,
+  email: 'robertocorreamoreiraneto@gmail.com',
+  linkedin: 'https://www.linkedin.com/in/roberto-neto-5891771b7',
+  github: `https://github.com/${GH_USER}`,
+};
+
+/* ------------------------------------------------------------------ */
 /* Estudos e perfil                                                    */
 /* ------------------------------------------------------------------ */
 export type Estudo = {tema: string; status: 'estudando' | 'praticando' | 'concluido'; fonte: string; desde: string; nota: string; projeto?: Projeto};

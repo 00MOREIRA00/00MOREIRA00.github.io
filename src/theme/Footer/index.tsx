@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import {GH_USER} from '@site/src/data/hub';
+import Logo from '@site/src/components/Logo';
 
 /** Rodapé próprio do hub (substitui o rodapé padrão do Docusaurus). */
 export default function Footer(): ReactNode {
@@ -13,8 +14,8 @@ export default function Footer(): ReactNode {
       </div>
       <div className="wrap foot-in">
         <div>
-          <div className="foot-brand">Roberto Neto</div>
-          <span>Hub de projetos e estudos · feito com Docusaurus</span>
+          <div className="foot-brand"><Logo size={40} />Roberto Neto</div>
+          <span>Hub de projetos e estudos</span>
         </div>
         <a href={`https://github.com/${GH_USER}`}>github.com/{GH_USER}</a>
       </div>

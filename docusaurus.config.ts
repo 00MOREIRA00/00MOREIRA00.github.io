@@ -71,6 +71,7 @@ const config: Config = {
     colorMode: {defaultMode: 'dark', respectPrefersColorScheme: true},
     navbar: {
       title: 'Roberto Neto',
+      logo: {alt: '', src: 'img/logo.svg', srcDark: 'img/logo-dark.svg', width: 32, height: 32},
       items: [
         {to: '/projetos', label: 'Projetos', position: 'left'},
         {to: '/sobre', label: 'Sobre', position: 'left'},

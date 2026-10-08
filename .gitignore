@@ -10,10 +10,28 @@
 
 # Misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Environment variables and local credentials
+.env
+.env.*
+.npmrc
+.pypirc
+.netrc
+.secrets/
+secrets/
+credentials.json
+credentials.*.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+
+# Local design references
+/design-references/
 
 npm-debug.log*
 yarn-debug.log*

@@ -18,43 +18,12 @@ npm start        # http://localhost:3000
 npm run build    # gera o site estático em build/
 ```
 
-## Como funciona o deploy
+## Publicar
 
-O [workflow de publicação](.github/workflows/deploy.yml) usa GitHub Actions para gerar o site
-estático e publicá-lo em **https://00moreira00.github.io** pelo GitHub Pages.
+O workflow `.github/workflows/deploy.yml` gera o site e publica no GitHub Pages a cada push na
+`main` (e também manualmente ou uma vez por dia).
 
-Ele é executado a cada push na `main`, manualmente pela aba **Actions**, ou pelo agendamento
-diário às **09:00 UTC (06:00 em São Paulo)**. O agendamento permite atualizar as specs de APIs
-sem alterar o código do hub.
-
-O processo tem duas etapas:
-
-1. **Build:** o runner Ubuntu obtém o código, configura Node.js 22 e instala as dependências
-   com `npm ci`. Depois, `npm run sync-specs` baixa as specs cadastradas em
-   `src/data/catalogo.json`, e `npm run build` gera o site em `build/`. O `prebuild` gera
-   automaticamente as páginas de referência das APIs quando o catálogo tem entradas.
-   A pasta `build/` é enviada como artefato para o GitHub Pages.
-2. **Deploy:** após o build terminar com sucesso, `actions/deploy-pages` publica esse artefato
-   no ambiente `github-pages`. Se o build falhar, essa execução não publica uma nova versão.
-
-Uma nova execução cancela a anterior caso ela ainda esteja em andamento. O workflow usa as
-permissões do token automático do GitHub; o deploy não exige um token criado manualmente.
-O secret opcional `SPECS_TOKEN` serve para baixar specs de outros repositórios privados.
-
-Para configurar e publicar pela primeira vez:
-
-1. No repositório, abra **Settings → Pages** e escolha **Source: GitHub Actions**.
-2. Envie as alterações para `main` ou abra **Actions → Publicar o hub no GitHub Pages →
-   Run workflow**, selecionando `main`.
-3. Acompanhe os jobs `build` e `deploy` na aba **Actions**. Quando concluírem, abra o link
-   do ambiente `github-pages` ou a URL do site.
-
-Nas próximas alterações, basta validar o projeto, fazer commit e enviar para `main`.
-A pasta `build/` é gerada pelo workflow e não precisa entrar no Git; também não é necessário
-criar uma branch `gh-pages` ou executar `npm run deploy` localmente.
-
-Veja o [passo a passo completo de deploy](docs/deploy-github-pages.md) para validação local,
-configuração de credenciais opcionais e solução de problemas.
+Na primeira vez: em **Settings › Pages**, escolha **Source: GitHub Actions**.
 
 ## Onde fica cada coisa
 
