@@ -29,8 +29,8 @@ const config: Config = {
   favicon: 'img/favicon.svg',
   future: {v4: true},
 
-  // Site de usuário do GitHub Pages: https://00moreira00.github.io
-  url: 'https://00moreira00.github.io',
+  // Domínio público do site hospedado no GitHub Pages.
+  url: 'https://rneto.dev.br',
   baseUrl: '/',
   organizationName: GITHUB_USER,
   projectName: '00MOREIRA00.github.io',
