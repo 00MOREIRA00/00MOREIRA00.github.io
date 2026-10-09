@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="320" viewBox="0 0 960 320" role="img" aria-labelledby="title desc">
+  <title id="title">Arquitetura distribuída com balanceadores de carga</title>
+  <desc id="desc">Um usuário acessa a internet. Um balanceador distribui requisições entre três serviços azuis, que se conectam a outro balanceador e a dois serviços rosas.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M1 1 9 5 1 9" fill="none" stroke="#555" stroke-width="1.5"/></marker>
+  </defs>
+  <rect width="960" height="320" fill="white"/>
+  <g fill="none" stroke="#555" stroke-width="2" marker-end="url(#arrow)">
+    <path d="M74 160 H125"/><path d="M212 160 H270"/>
+    <path d="M315 160 H360 V55 Q360 45 370 45 H435"/>
+    <path d="M360 160 H435"/><path d="M360 160 V265 Q360 275 370 275 H435"/>
+    <path d="M555 45 H615 Q625 45 625 55 V160 H660"/>
+    <path d="M555 160 H660"/><path d="M555 275 H615 Q625 275 625 265 V160"/>
+    <path d="M705 160 H750 V115 Q750 105 760 105 H790"/>
+    <path d="M750 160 V205 Q750 215 760 215 H790"/>
+  </g>
+  <g stroke="#666" stroke-width="2">
+    <circle cx="52" cy="139" r="10" fill="white"/><path d="M36 172 Q36 151 52 151 Q68 151 68 172 Z" fill="white"/>
+    <path d="M134 177 C112 172 115 147 132 143 C127 120 155 111 168 127 C183 110 208 123 205 141 C225 145 226 171 208 177 Z" fill="#5275ed" stroke="#5275ed"/>
+    <ellipse cx="292" cy="160" rx="12" ry="27" fill="white"/><ellipse cx="682" cy="160" rx="12" ry="27" fill="white"/>
+    <rect x="435" y="20" width="120" height="50" rx="10" fill="#a8dff3"/>
+    <rect x="435" y="135" width="120" height="50" rx="10" fill="#a8dff3"/>
+    <rect x="435" y="250" width="120" height="50" rx="10" fill="#a8dff3"/>
+    <rect x="790" y="80" width="125" height="50" rx="10" fill="#f8cbd1"/>
+    <rect x="790" y="190" width="125" height="50" rx="10" fill="#f8cbd1"/>
+  </g>
+  <g stroke="#444" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M279 173 306 140"/><path d="M302 147 321 133"/><path d="M302 161 H323"/><path d="M302 175 321 188"/>
+    <path d="M669 173 696 140"/><path d="M692 147 711 133"/><path d="M692 161 H713"/><path d="M692 175 711 188"/>
+  </g>
+  <g fill="#333" font-family="Arial, sans-serif" font-size="15" text-anchor="middle">
+    <text x="52" y="197">Usuário</text><text x="169" y="105">Internet</text>
+    <text x="297" y="211" font-size="12">Load Balancer</text><text x="687" y="211" font-size="12">Load Balancer</text>
+    <text x="495" y="51">Serviço 1</text><text x="495" y="166">Serviço 2</text><text x="495" y="281">Serviço 3</text>
+    <text x="852" y="111">Serviço 1</text><text x="852" y="221">Serviço 2</text>
+  </g>
+</svg>

@@ -27,7 +27,6 @@ const config: Config = {
   title: 'Roberto Neto',
   tagline: 'Projetos e estudos, documentados de verdade.',
   favicon: 'img/favicon.svg',
-  future: {v4: true},
 
   // Domínio público do site hospedado no GitHub Pages.
   url: 'https://rneto.dev.br',
