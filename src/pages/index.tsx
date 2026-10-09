@@ -4,12 +4,14 @@ import Layout from '@theme/Layout';
 import {
   Dots, EstudoCard, LogList, ProjetoCard, useTodosProjetos, useTotalEndpoints,
 } from '@site/src/components/hub';
+import {PostRow, useBlogExtra} from '@site/src/components/blog';
 import {ESTUDOS, GH_USER, NEWSFEED, NEWSFEED_COMMITS, NEWSFEED_URL} from '@site/src/data/hub';
 
 const pad = (k: string, w: number) => k + ' '.repeat(Math.max(1, w - k.length));
 
 export default function Home(): ReactNode {
   const todos = useTodosProjetos();
+  const {recentes} = useBlogExtra();
   const conta = (...tipos: string[]) => todos.filter((p) => tipos.includes(p.tipo)).length;
   const porTipo = (tipo: string) => todos.filter((p) => p.tipo === tipo).map((p) => p.id);
   const lista = (ids: string[]) =>
@@ -93,6 +95,19 @@ export default function Home(): ReactNode {
             </div>
           </div>
         </section>
+
+        {/* Últimos posts: só aparece depois do primeiro post publicado */}
+        {recentes.length > 0 && (
+          <section className="wrap sec">
+            <div className="sec-head">
+              <div><div className="eyebrow">// Blog</div><h2>Últimos posts</h2></div>
+              <Link to="/blog">todos os posts →</Link>
+            </div>
+            <ul className="posts" style={{marginTop: 24}}>
+              {recentes.map((p) => <PostRow key={p.permalink} p={p} />)}
+            </ul>
+          </section>
+        )}
       </main>
     </Layout>
   );

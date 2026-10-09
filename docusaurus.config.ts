@@ -53,7 +53,28 @@ const config: Config = {
               include: ['api/**/*.{md,mdx}'],
             }
           : false,
-        blog: false,
+        // Blog: cada post é um arquivo em blog/ (veja docs/adicionar-post.md)
+        blog: {
+          path: 'blog',
+          routeBasePath: 'blog',
+          blogTitle: 'Blog',
+          blogDescription: 'Anotações sobre o que estou construindo e estudando.',
+          postsPerPage: 'ALL',
+          blogSidebarCount: 0,
+          showReadingTime: true,
+          authorsMapPath: 'authors.yml',
+          editUrl: `https://github.com/${GITHUB_USER}/00MOREIRA00.github.io/edit/main/`,
+          onInlineAuthors: 'throw',
+          onInlineTags: 'ignore',
+          onUntruncatedBlogPosts: 'ignore',
+          feedOptions: {
+            type: ['rss', 'atom'],
+            title: 'Roberto Neto · Blog',
+            description: 'Anotações sobre o que estou construindo e estudando.',
+            copyright: `© ${new Date().getFullYear()} Roberto Neto`,
+            language: 'pt-BR',
+          },
+        },
         theme: {customCss: './src/css/custom.css'},
       } satisfies Preset.Options,
     ],
@@ -61,6 +82,7 @@ const config: Config = {
 
   plugins: [
     './src/plugins/api-meta.ts',
+    './src/plugins/blog-extra.ts',
     ...(temApis
       ? [['docusaurus-plugin-openapi-docs', {id: 'api', docsPluginId: 'classic', config: openApiConfig}]]
       : []),
@@ -74,6 +96,7 @@ const config: Config = {
       logo: {alt: '', src: 'img/logo.svg', srcDark: 'img/logo-dark.svg', width: 32, height: 32},
       items: [
         {to: '/projetos', label: 'Projetos', position: 'left'},
+        {to: '/blog', label: 'Blog', position: 'left'},
         {to: '/sobre', label: 'Sobre', position: 'left'},
         {
           href: `https://github.com/${GITHUB_USER}`,
@@ -84,7 +107,8 @@ const config: Config = {
       ],
     },
     prism: {
-      theme: prismThemes.github,
+      // blocos de código sempre escuros, no estilo terminal do hub
+      theme: prismThemes.vsDark,
       darkTheme: prismThemes.vsDark,
       additionalLanguages: ['bash', 'json', 'java', 'csharp'],
     },

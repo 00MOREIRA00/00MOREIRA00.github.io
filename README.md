@@ -36,6 +36,9 @@ Na primeira vez: em **Settings › Pages**, escolha **Source: GitHub Actions**.
 | `src/components/NewsfeedCase.tsx` | as abas do case |
 | `src/components/hub.tsx` | peças reutilizadas: cards, histórico, selos |
 | `src/pages/sobre.tsx` | página Sobre |
+| `blog/` | posts do blog (um arquivo `.md` por post) e `authors.yml` |
+| `src/theme/BlogListPage`, `src/theme/BlogPostPage`, `src/theme/BlogTagsPostsPage` | lista, post e tag do blog no visual do hub |
+| `src/plugins/blog-extra.ts` | "Últimos posts" na home e a página do blog vazio |
 | `src/theme/Footer/index.tsx` | rodapé |
 | `src/css/custom.css` | tema (cores claro/escuro, fontes, grade de fundo) |
 | `src/data/catalogo.json` | lista de APIs (vazia por enquanto) |
@@ -47,3 +50,4 @@ Os guias passo a passo ficam em [`docs/`](docs/README.md):
 - [Adicionar um projeto](docs/adicionar-projeto.md) (system design, Docker ou fluxo)
 - [Adicionar uma API](docs/adicionar-api.md) (referência estilo Swagger a partir do OpenAPI)
 - [Adicionar um estudo](docs/adicionar-estudo.md)
+- [Adicionar um post no blog](docs/adicionar-post.md)
