@@ -4,8 +4,10 @@ description: Entenda o que é arquitetura distribuída, como os serviços se com
 authors: roberto
 tags: [arquitetura-distribuida, system-design]
 slug: arquitetura-distribuida
-image: /img/blog/arquitetura-distribuida.svg
+image: /img/blog/arquitetura-distribuida/capa.png
 ---
+
+![Imagem de abertura do artigo sobre arquitetura distribuída.](/img/blog/arquitetura-distribuida/capa.png)
 
 Fala pessoaaaaal, tudo certo?
 
@@ -35,7 +37,7 @@ Esses serviços podem estar em:
 - Linguagens diferentes
 - Modelos de comunicação diferentes
 
-![Diagrama de arquitetura distribuída: usuário, internet, balanceadores de carga e serviços interconectados.](/img/blog/arquitetura-distribuida.svg)
+![Diagrama de arquitetura distribuída: usuário, internet, balanceadores de carga e serviços interconectados.](/img/blog/arquitetura-distribuida/diagrama.png)
 
 “Um exemplo simples disso é quando temos um balanceador de carga distribuindo requisições entre vários serviços independentes, como mostrei na imagem acima.”
 E mesmo assim, precisam funcionar de forma coesa, confiável e rápida.
