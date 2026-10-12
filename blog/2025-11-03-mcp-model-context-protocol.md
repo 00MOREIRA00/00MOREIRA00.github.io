@@ -33,7 +33,7 @@ Em outras palavras, ele é uma **ponte inteligente** entre o modelo de IA e o mu
 
 ## Como o MCP funciona?
 
-A **IA** (como ChatGPT, Claude, etc.) se conecta a um **servidor MCP**, que funciona como uma **ponte entre o modelo e o mundo externo**.
+A **IA** (como ChatGPT, por exemplo) se conecta a um **servidor MCP**, que funciona como uma **ponte entre o modelo e o mundo externo**.
 
 A IA traduz as requisições para a linguagem que o servidor MCP entende, esse servidor se comunica com a fonte de dados externa e depois devolve as respostas para o modelo, tudo de forma estruturada.
 
