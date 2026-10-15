@@ -51,7 +51,19 @@ export const NEWSFEED: Projeto = {
   href: '/projetos/instagram-newsfeed',
 };
 
-export const PROJETOS: Projeto[] = [NEWSFEED];
+export const POSTGRESQL_PGADMIN: Projeto = {
+  id: 'docker-postgresql-pgadmin',
+  tipo: 'docker',
+  nome: 'PostgreSQL + pgAdmin com Docker',
+  descricao:
+    'Laboratório da Pauta Digital: PostgreSQL com Docker Compose, pgAdmin e migrations Flyway. Modelagem relacional, evolução do schema com dados e backup e restore.',
+  repo: `${GH_USER}/docker-postgresql-pgadmin`,
+  atualizado: '2026-10-14',
+  tags: ['docker', 'postgresql', 'pgadmin', 'flyway', 'sql', 'backup'],
+  href: '/projetos/docker-postgresql-pgadmin',
+};
+
+export const PROJETOS: Projeto[] = [POSTGRESQL_PGADMIN, NEWSFEED];
 
 export const NEWSFEED_ARQUIVOS: [string, string][] = [
   ['docs/01-requisitos.md', 'Requisitos funcionais e não funcionais'],

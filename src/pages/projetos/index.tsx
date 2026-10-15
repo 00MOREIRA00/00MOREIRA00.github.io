@@ -4,7 +4,7 @@ import {ProjetoCard, useTodosProjetos} from '@site/src/components/hub';
 import {TIPOS, type TipoProjeto} from '@site/src/data/hub';
 
 type Filtro = 'todos' | TipoProjeto;
-const FILTROS: Filtro[] = ['todos', 'design', 'api'];
+const FILTROS: Filtro[] = ['todos', 'design', 'api', 'docker'];
 
 export default function Projetos(): ReactNode {
   const todos = useTodosProjetos();
@@ -26,8 +26,8 @@ export default function Projetos(): ReactNode {
           <div className="eyebrow">// Hub</div>
           <h1>Projetos</h1>
           <p className="lead" style={{margin: '6px 0 0'}}>
-            Um card por repositório. Por enquanto, um estudo de caso de system design; APIs, Docker e
-            fluxos entram aqui conforme forem publicados.
+            Um card por repositório: estudos de system design, APIs e laboratórios Docker, com
+            documentação e exemplos para explorar cada projeto.
           </p>
         </div>
         <div className="toolbar">
