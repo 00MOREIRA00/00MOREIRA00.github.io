@@ -1,5 +1,6 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
+import {useHistory} from '@docusaurus/router';
 import {fmtData} from '@site/src/data/hub';
 import {usePluginData} from '@docusaurus/useGlobalData';
 import type {BlogExtra, PostResumo} from '@site/src/plugins/blog-extra';
@@ -46,21 +47,23 @@ export function BlogTopo({
 /** Filtro por tag: cada tag é a página /blog/tags/<tag> que o Docusaurus gera. */
 export function FiltroTags({atual}: {atual?: string}): ReactNode {
   const {tags, total} = useBlogExtra();
+  const history = useHistory();
   return (
-    <nav className="seg" aria-label="Filtrar por tag">
-      <Link to="/blog" aria-current={!atual ? 'page' : undefined}>
-        Todos <span className="seg-n">{total}</span>
-      </Link>
-      {tags.map((t) => (
-        <Link
-          key={t.permalink}
-          to={t.permalink}
-          aria-current={atual === t.permalink ? 'page' : undefined}
-        >
-          #{t.label} <span className="seg-n">{t.count}</span>
-        </Link>
-      ))}
-    </nav>
+    <div className="blog-filter">
+      <label htmlFor="blog-topic">Filtrar por assunto</label>
+      <select
+        id="blog-topic"
+        value={atual ?? '/blog'}
+        onChange={(event) => history.push(event.target.value)}
+      >
+        <option value="/blog">Todos os posts ({total})</option>
+        {tags.map((t) => (
+          <option key={t.permalink} value={t.permalink}>
+            {t.label} ({t.count})
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 

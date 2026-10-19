@@ -82,7 +82,22 @@ function Conteudo({children}: {children: ReactNode}): ReactNode {
           ))}
         </header>
 
-        <div className={clsx('post-grid', sumario.length === 0 && 'post-grid--solo')}>
+        <div className="post-content">
+          {sumario.length > 0 && (
+            <details className="post-toc">
+              <summary>Nesta página</summary>
+              <nav aria-label="Nesta página">
+                {sumario.map((t) => (
+                  <a
+                    key={t.id}
+                    href={`#${t.id}`}
+                    className={t.level > min ? 'toc-sub' : undefined}
+                    dangerouslySetInnerHTML={{__html: t.value}}
+                  />
+                ))}
+              </nav>
+            </details>
+          )}
           <div className="prose">
             <ContentVisibility metadata={metadata} />
             <div className="markdown">
@@ -118,20 +133,6 @@ function Conteudo({children}: {children: ReactNode}): ReactNode {
               )}
             </div>
           </div>
-
-          {sumario.length > 0 && (
-            <nav className="toc" aria-label="Nesta página">
-              <div className="eyebrow">Nesta página</div>
-              {sumario.map((t) => (
-                <a
-                  key={t.id}
-                  href={`#${t.id}`}
-                  className={t.level > min ? 'toc-sub' : undefined}
-                  dangerouslySetInnerHTML={{__html: t.value}}
-                />
-              ))}
-            </nav>
-          )}
         </div>
       </article>
     </Layout>
