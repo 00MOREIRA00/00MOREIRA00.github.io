@@ -85,7 +85,8 @@ O build consulta a branch `main` do repositório informado em `NEWSFEED.repo`:
 - a data do último commit alimenta o case e os cards do projeto;
 - a árvore de arquivos alimenta a lista de Markdown/MDX em `docs/`, incluindo subpastas,
   mais `glossario.md`, `database/README.md` e `newsfeed.drawio`, quando presentes;
-- os seis commits mais recentes alimentam o histórico no case, home e Sobre.
+- os seis commits mais recentes alimentam a linha do tempo na Visão geral do case.
+  O bloco de estudos fica na home; a página Sobre concentra perfil e contato.
 
 As descrições conhecidas dos arquivos são preservadas a partir do snapshot. Arquivos novos
 recebem um título baseado no nome. Os demais projetos continuam com metadados editoriais.

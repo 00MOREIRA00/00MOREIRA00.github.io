@@ -85,7 +85,9 @@ Informe as dimensões reais para reservar espaço durante o carregamento:
 A primeira imagem usa `eager`; imagens abaixo dela usam `lazy`. A sintaxe acima
 funciona também nos arquivos `.md`, processados pelo Docusaurus como MDX.
 
-Mantenha uma versão JPEG otimizada da capa para os previews sociais e indique-a
+O card padrão do portal fica em `static/img/social-card.jpg` (1200 × 630), definido
+em `themeConfig.image`. Ele atende às páginas sem imagem própria. Para posts,
+mantenha uma versão JPEG otimizada da capa para os previews sociais e indique-a
 no front matter. Essa versão não precisa ser carregada no corpo do artigo:
 
 ```yaml

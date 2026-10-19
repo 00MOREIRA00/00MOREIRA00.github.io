@@ -1,9 +1,8 @@
-import {useNewsfeedMeta} from '@site/src/components/useNewsfeed';
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
-  Dots, EstudoCard, LogList, ProjetoCard, useTodosProjetos,
+  Dots, EstudoCard, ProjetoCard, useTodosProjetos,
 } from '@site/src/components/hub';
 import {PostRow, useBlogExtra} from '@site/src/components/blog';
 import {ESTUDOS, GH_USER, NEWSFEED, NEWSFEED_URL} from '@site/src/data/hub';
@@ -11,7 +10,6 @@ import {ESTUDOS, GH_USER, NEWSFEED, NEWSFEED_URL} from '@site/src/data/hub';
 const pad = (k: string, w: number) => k + ' '.repeat(Math.max(1, w - k.length));
 
 export default function Home(): ReactNode {
-  const {commits} = useNewsfeedMeta();
   const todos = useTodosProjetos();
   const {recentes, total} = useBlogExtra();
   const conta = (...tipos: string[]) => todos.filter((p) => tipos.includes(p.tipo)).length;
@@ -90,10 +88,6 @@ export default function Home(): ReactNode {
             </div>
             <div className="now-grid">
               {ESTUDOS.map((e) => <EstudoCard key={e.tema} e={e} />)}
-              <div className="block" style={{gap: 10}}>
-                <div className="step-tag">Histórico do repositório</div>
-                <LogList itens={commits} />
-              </div>
             </div>
           </div>
         </section>

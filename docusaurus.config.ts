@@ -56,6 +56,7 @@ const config: Config = {
   plugins: ['./src/plugins/blog-extra.ts', './src/plugins/newsfeed-meta.ts'],
 
   themeConfig: {
+    image: 'img/social-card.jpg',
     colorMode: {defaultMode: 'dark', respectPrefersColorScheme: true},
     navbar: {
       title: 'Roberto Neto',
