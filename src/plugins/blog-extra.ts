@@ -46,7 +46,11 @@ export default function blogExtraPlugin(): Plugin {
       actions.setGlobalData(dados);
 
       if (posts.length === 0) {
-        actions.addRoute({path: '/blog', exact: true, component: '@site/src/components/BlogVazio.tsx'});
+        actions.addRoute({
+          path: '/blog',
+          exact: true,
+          component: '@site/src/components/BlogVazio.tsx',
+        });
       }
     },
   };

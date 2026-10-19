@@ -2,14 +2,21 @@ import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import {useNewsfeedMeta} from './useNewsfeed';
 import {
-  NEWSFEED, PROJETOS, TIPOS, fmtData, fmtDia, fmtMes,
-  type Estudo, type Projeto, type TipoProjeto,
+  NEWSFEED,
+  PROJETOS,
+  TIPOS,
+  fmtData,
+  fmtDia,
+  fmtMes,
+  type Estudo,
+  type Projeto,
+  type TipoProjeto,
 } from '@site/src/data/hub';
 
 /** Projetos editoriais do portfólio, incluindo projetos de API. */
 export function useTodosProjetos(): Projeto[] {
   const meta = useNewsfeedMeta();
-  return PROJETOS.map((p) => p.id === NEWSFEED.id ? {...p, atualizado: meta.atualizado} : p);
+  return PROJETOS.map((p) => (p.id === NEWSFEED.id ? {...p, atualizado: meta.atualizado} : p));
 }
 
 export const TypeBadge = ({tipo}: {tipo: TipoProjeto}) => (
@@ -48,7 +55,9 @@ export function ProjetoCard({p, destaque = false}: {p: Projeto; destaque?: boole
 }
 
 export function EstudoCard({e}: {e: Estudo}): ReactNode {
-  const status = {estudando: 'Estudando', praticando: 'Praticando', concluido: 'Concluído'}[e.status];
+  const status = {estudando: 'Estudando', praticando: 'Praticando', concluido: 'Concluído'}[
+    e.status
+  ];
   return (
     <article className={`est est-${e.status}`}>
       <div className="est-head">

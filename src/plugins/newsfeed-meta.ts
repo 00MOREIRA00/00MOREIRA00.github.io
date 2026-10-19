@@ -8,7 +8,9 @@ export default function newsfeedMetaPlugin(): Plugin<NewsfeedMeta> {
     name: 'newsfeed-meta',
     loadContent() {
       return fetchNewsfeedMeta({
-        repo: NEWSFEED.repo, branch: 'main', fallback: NEWSFEED_FALLBACK,
+        repo: NEWSFEED.repo,
+        branch: 'main',
+        fallback: NEWSFEED_FALLBACK,
         token: process.env.GITHUB_TOKEN,
       });
     },

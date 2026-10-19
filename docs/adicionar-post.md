@@ -23,7 +23,7 @@ Use `.mdx` em vez de `.md` só se for usar componentes React dentro do texto.
 
 ```md
 ---
-title: "Fan-out na escrita: o feed fica pronto antes de você abrir o app"
+title: 'Fan-out na escrita: o feed fica pronto antes de você abrir o app'
 description: Uma ou duas frases. Aparece embaixo do título, na lista e no Google.
 authors: roberto
 tags: [system-design, cache]
@@ -34,15 +34,15 @@ tags: [system-design, cache]
 Texto do post...
 ```
 
-| Campo | Obrigatório | O que faz |
-| --- | --- | --- |
-| `title` | sim | título do post. Use aspas se tiver `:` |
-| `description` | sim | resumo mostrado na lista e embaixo do título |
-| `authors` | sim | sempre `roberto` (definido em `blog/authors.yml`) |
-| `tags` | não | em minúsculas, com hífen. Cada tag ganha a página `/blog/tags/<tag>` e um botão no filtro |
-| `slug` | não | troca o final do endereço |
-| `draft: true` | não | o post aparece no `npm start`, mas não vai para o site publicado |
-| `hide_table_of_contents: true` | não | esconde o "Nesta página" da lateral |
+| Campo                          | Obrigatório | O que faz                                                                                 |
+| ------------------------------ | ----------- | ----------------------------------------------------------------------------------------- |
+| `title`                        | sim         | título do post. Use aspas se tiver `:`                                                    |
+| `description`                  | sim         | resumo mostrado na lista e embaixo do título                                              |
+| `authors`                      | sim         | sempre `roberto` (definido em `blog/authors.yml`)                                         |
+| `tags`                         | não         | em minúsculas, com hífen. Cada tag ganha a página `/blog/tags/<tag>` e um botão no filtro |
+| `slug`                         | não         | troca o final do endereço                                                                 |
+| `draft: true`                  | não         | o post aparece no `npm start`, mas não vai para o site publicado                          |
+| `hide_table_of_contents: true` | não         | esconde o "Nesta página" da lateral                                                       |
 
 ## 3. Escreva
 
@@ -77,9 +77,23 @@ prefira WebP sem perdas. Não amplie imagens menores só para atingir essa largu
 Informe as dimensões reais para reservar espaço durante o carregamento:
 
 ```mdx
-<img src="/img/blog/meu-post/capa.webp" alt="Descrição da capa" width="1024" height="683" loading="eager" decoding="async" />
+<img
+  src="/img/blog/meu-post/capa.webp"
+  alt="Descrição da capa"
+  width="1024"
+  height="683"
+  loading="eager"
+  decoding="async"
+/>
 
-<img src="/img/blog/meu-post/diagrama.webp" alt="Descrição do diagrama" width="800" height="300" loading="lazy" decoding="async" />
+<img
+  src="/img/blog/meu-post/diagrama.webp"
+  alt="Descrição do diagrama"
+  width="800"
+  height="300"
+  loading="lazy"
+  decoding="async"
+/>
 ```
 
 A primeira imagem usa `eager`; imagens abaixo dela usam `lazy`. A sintaxe acima

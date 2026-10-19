@@ -1,0 +1,10 @@
+{
+  "timeoutMs": 10000,
+  "concurrency": 4,
+  "ignore": [
+    {
+      "pattern": "^https://(?:www\\.)?linkedin\\.com/",
+      "reason": "LinkedIn bloqueia clientes automatizados; conferir estes links manualmente."
+    }
+  ]
+}

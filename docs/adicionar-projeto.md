@@ -13,15 +13,15 @@ Em `src/data/hub.ts`, crie a constante do projeto e coloque-a em `PROJETOS`:
 
 ```ts
 export const MEU_PROJETO: Projeto = {
-  id: 'url-shortener',                  // vira a URL: /projetos/url-shortener
-  tipo: 'design',                       // 'design' | 'api' | 'docker' | 'fluxo'
+  id: 'url-shortener', // vira a URL: /projetos/url-shortener
+  tipo: 'design', // 'design' | 'api' | 'docker' | 'fluxo'
   nome: 'Encurtador de URL',
   descricao: 'Uma ou duas frases sobre o que o projeto resolve.',
-  repo: `${GH_USER}/url-shortener`,     // "usuario/repo" no GitHub
-  fonte: 'Livro X, capítulo 8',         // opcional: de onde veio o estudo
-  atualizado: '2026-10-15',             // AAAA-MM-DD
-  tags: ['system-design', 'hashing'],   // sem o "#", ele é colocado na tela
-  href: '/projetos/url-shortener',      // tem que bater com o arquivo da página
+  repo: `${GH_USER}/url-shortener`, // "usuario/repo" no GitHub
+  fonte: 'Livro X, capítulo 8', // opcional: de onde veio o estudo
+  atualizado: '2026-10-15', // AAAA-MM-DD
+  tags: ['system-design', 'hashing'], // sem o "#", ele é colocado na tela
+  href: '/projetos/url-shortener', // tem que bater com o arquivo da página
 };
 
 export const PROJETOS: Projeto[] = [MEU_PROJETO, NEWSFEED];

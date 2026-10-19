@@ -12,7 +12,8 @@ export default function BlogVazio(): ReactNode {
         <div className="empty">
           <strong>Nenhum post publicado ainda.</strong>
           <span>
-            O primeiro está a caminho. Enquanto isso, dá uma olhada nos <Link to="/projetos">projetos</Link>.
+            O primeiro está a caminho. Enquanto isso, dá uma olhada nos{' '}
+            <Link to="/projetos">projetos</Link>.
           </span>
         </div>
       </main>

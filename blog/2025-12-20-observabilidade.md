@@ -105,7 +105,7 @@ Nesse caso, o trace_id nos permite acompanhar toda a jornada da requisição, aj
 
 Até aqui falamos bastante do conceito, mas na prática a observabilidade só acontece quando temos **ferramentas capazes de coletar, armazenar e correlacionar logs, métricas e traces**.
 
-Hoje o mercado oferece diversas soluções para observabilidade, tanto *open source* quanto **comerciais (ferramentas pagas oferecidas por empresas)**. No entanto, o mais importante não é a ferramenta em si, mas o que ela permite fazer.
+Hoje o mercado oferece diversas soluções para observabilidade, tanto _open source_ quanto **comerciais (ferramentas pagas oferecidas por empresas)**. No entanto, o mais importante não é a ferramenta em si, mas o que ela permite fazer.
 
 De forma geral, uma boa ferramenta de observabilidade deve permitir:
 

@@ -27,6 +27,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run lint
+      - run: npm run format:check
       - run: npm run typecheck
       - run: npm test
       - name: Avisos de segurança
@@ -35,6 +37,9 @@ jobs:
       - run: npm run build
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - name: Verificar links externos
+        run: npm run check:links
+        continue-on-error: true
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:

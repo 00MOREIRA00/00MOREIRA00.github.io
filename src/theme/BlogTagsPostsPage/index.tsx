@@ -9,9 +9,12 @@ import {BlogTopo, FiltroTags, PostRow, resumoDe} from '@site/src/components/blog
 /** Posts de uma tag (/blog/tags/<tag>): mesma lista do /blog, com a tag marcada no filtro. */
 export default function BlogTagsPostsPage({tag, items}: Props): ReactNode {
   const titulo = `#${tag.label}`;
-  const lead = tag.description ?? `${tag.count} ${tag.count === 1 ? 'post' : 'posts'} com esta tag.`;
+  const lead =
+    tag.description ?? `${tag.count} ${tag.count === 1 ? 'post' : 'posts'} com esta tag.`;
   return (
-    <HtmlClassNameProvider className={clsx(ThemeClassNames.wrapper.blogPages, ThemeClassNames.page.blogTagPostListPage)}>
+    <HtmlClassNameProvider
+      className={clsx(ThemeClassNames.wrapper.blogPages, ThemeClassNames.page.blogTagPostListPage)}
+    >
       <PageMetadata title={`Posts com ${titulo}`} description={lead} />
       <SearchMetadata tag="blog_tags_posts" />
       <Layout>

@@ -16,7 +16,11 @@ type Autor = {name?: string; title?: string; imageURL?: string; url?: string};
 /** Foto do autor; se não carregar, mostra as iniciais. */
 function FotoAutor({autor}: {autor: Autor}): ReactNode {
   const [falhou, setFalhou] = useState(false);
-  const iniciais = (autor.name ?? '?').split(' ').map((p) => p[0]).slice(0, 2).join('');
+  const iniciais = (autor.name ?? '?')
+    .split(' ')
+    .map((p) => p[0])
+    .slice(0, 2)
+    .join('');
   return (
     <span className="byline-av">
       {autor.imageURL && !falhou ? (
@@ -30,11 +34,24 @@ function FotoAutor({autor}: {autor: Autor}): ReactNode {
 
 function Conteudo({children}: {children: ReactNode}): ReactNode {
   const {metadata, toc} = useBlogPost();
-  const {title, description, date, readingTime, authors, tags, editUrl, prevItem, nextItem, frontMatter} = metadata;
+  const {
+    title,
+    description,
+    date,
+    readingTime,
+    authors,
+    tags,
+    editUrl,
+    prevItem,
+    nextItem,
+    frontMatter,
+  } = metadata;
   const dia = new Date(date).toISOString().slice(0, 10);
   const min = frontMatter.toc_min_heading_level ?? 2;
   const max = frontMatter.toc_max_heading_level ?? 3;
-  const sumario = frontMatter.hide_table_of_contents ? [] : toc.filter((t) => t.level >= min && t.level <= max);
+  const sumario = frontMatter.hide_table_of_contents
+    ? []
+    : toc.filter((t) => t.level >= min && t.level <= max);
 
   return (
     <Layout>
@@ -126,7 +143,9 @@ export default function BlogPostPage(props: Props): ReactNode {
   const Post = props.content;
   return (
     <BlogPostProvider content={props.content} isBlogPostPage>
-      <HtmlClassNameProvider className={clsx(ThemeClassNames.wrapper.blogPages, ThemeClassNames.page.blogPostPage)}>
+      <HtmlClassNameProvider
+        className={clsx(ThemeClassNames.wrapper.blogPages, ThemeClassNames.page.blogPostPage)}
+      >
         <BlogPostPageMetadata />
         <BlogPostPageStructuredData />
         <Conteudo>

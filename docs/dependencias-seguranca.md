@@ -1,71 +1,88 @@
 # Segurança das dependências
 
-## Estado após a retirada do Swagger
+## Resultado da revisão
 
-O portal passou a ser um blog e portfólio. Foram removidos os plugins OpenAPI,
-a geração de referência e a sincronização de specs. Projetos de API podem
-documentar rotas nas próprias páginas.
+A integração Swagger/OpenAPI e sua cadeia Postman/Faker foram removidas. O portal
+é um site estático de blog e portfólio; a documentação de rotas fica nas páginas
+dos projetos. Também foram removidos Sass e as dependências diretas `js-yaml` e
+`@types/js-yaml`, que não eram mais usadas pelo código do portal. O Docusaurus
+continua trazendo seu próprio parser YAML transitivamente.
 
-A auditoria executada pelo npm após a remoção reportou **29 vulnerabilidades altas**
-e nenhuma crítica. Os overrides foram mantidos nesta alteração; sua revisão
-continua sendo uma tarefa separada. O CI executa `npm audit --audit-level=critical`
-como aviso não bloqueante, além de typecheck e build bloqueantes.
+Auditoria desta revisão, após instalar também as ferramentas da issue #16:
 
-## Histórico da revisão anterior (9 de outubro de 2026)
+| Resolução                                          | Críticos | Altos | Moderados | Total |
+| -------------------------------------------------- | -------: | ----: | --------: | ----: |
+| Antes da revisão dos overrides                     |        0 |    28 |         0 |    28 |
+| Cópia temporária sem nenhum override               |       15 |    15 |        15 |    45 |
+| Resolução final, com quatro overrides justificados |        0 |    28 |         0 |    28 |
 
-Os detalhes abaixo descrevem a árvore de dependências anterior à remoção dos
-plugins OpenAPI, incluindo a cadeia Postman que deixou de fazer parte do portal.
+Os números representam pacotes afetados direta ou transitivamente no relatório
+`npm audit`, não 28 vulnerabilidades independentes. Na árvore final, todos os
+alertas derivam do advisory de `braces` descrito abaixo. As ferramentas de lint,
+formatação, links e testes do contato não acrescentaram novos advisories.
 
-Revisão em 9 de outubro de 2026. O `npm audit` passou de 53 pacotes afetados
-(16 críticos, 21 altos e 16 moderados) para 35 altos, associados a dois alertas.
-Não há alertas críticos ou moderados na auditoria após as atualizações.
+## Overrides mantidos
 
-## Atualizações aplicadas
+| Pacote                    | Versão | Justificativa e consumidor atual                                                                                                             |
+| ------------------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tinypool`                | 2.1.2  | O Docusaurus solicita 1.x. Sem override resolve 1.1.1, afetado por poluição de protótipo com execução de código; os advisories exigem 2.1.2. |
+| `serialize-javascript`    | 7.0.5  | `copy-webpack-plugin` e `css-minimizer-webpack-plugin` resolvem 6.0.2 sem override, reintroduzindo execução de código e exaustão de CPU.     |
+| `postcss-selector-parser` | 7.1.6  | Partes da cadeia CSS resolvem 6.1.4 sem override, afetado por complexidade quadrática no parsing de seletores.                               |
+| `uuid`                    | 11.1.1 | `sockjs`, usado pelo servidor de desenvolvimento, resolve 8.3.2 sem override, com falha de validação de limites de buffer.                   |
 
-O campo `overrides` de `package.json` fixa versões corrigidas de dependências
-indiretas que os pacotes principais ainda não adotaram:
+Fontes dos limites de correção: [Tinypool](https://github.com/advisories/GHSA-85c8-ppgw-ccpr),
+[Serialize JavaScript — execução de código](https://github.com/advisories/GHSA-5c6j-r48x-rmvq),
+[Serialize JavaScript — CPU](https://github.com/advisories/GHSA-qj8w-gfj5-8c6v),
+[PostCSS selector parser](https://github.com/advisories/GHSA-rj75-hqrm-r3gf) e
+[UUID](https://github.com/advisories/GHSA-w5hq-g745-h8pq).
 
-| Dependência | Versão |
-| --- | --- |
-| tinypool | 2.1.2 |
-| serialize-javascript | 7.0.5 |
-| postcss-selector-parser | 7.1.6 |
-| js-yaml | mesma faixa da dependência direta (`$js-yaml`), atualmente 4.3.2 |
-| yaml | 1.10.3 |
-| uuid | 11.1.1 |
+Esses overrides atravessam versões principais e continuam sendo exceções de
+compatibilidade. Instalação limpa, lint, testes, typecheck, build e inicialização
+do servidor de desenvolvimento devem ser conferidos ao alterá-los. Reavaliar cada
+um quando seus consumidores atualizarem as faixas suportadas; não removê-los apenas
+para reduzir o número de overrides.
 
-Essas substituições incluem mudanças de versão principal. O build de produção,
-a leitura de YAML e a geração de um exemplo Node.js/Axios com Postman foram
-validados. Isso não cobre todas as funcionalidades futuras do catálogo de APIs,
-que atualmente está vazio. Reavaliar os overrides ao atualizar Docusaurus/OpenAPI.
+## Overrides removidos
 
-## Alertas pendentes
+- `yaml: 1.10.3`: não há consumidor do pacote `yaml` na árvore atual; a exceção
+  sustentava a integração antiga.
+- `js-yaml: $js-yaml`: os consumidores atuais já resolvem 4.3.2 sem override.
+  A dependência direta do portal e seus tipos foram removidos por falta de uso.
 
-- **braces 3.0.3:** recursão excessiva com padrões profundamente aninhados.
-  Não existe versão corrigida publicada no registro npm nesta revisão.
-  Afeta ferramentas que processam padrões de arquivos, como micromatch/chokidar.
-  Não usar padrões de arquivos fornecidos por fontes não confiáveis.
-  [Alerta upstream](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm).
-- **@faker-js/faker 5.5.3:** execução de código através de templates em `helpers.fake`.
-  É uma dependência de `postman-collection`, usada pelos plugins OpenAPI.
-  O Postman usa APIs e caminhos de importação antigos que não são compatíveis
-  com uma substituição direta pelo Faker 10.6.0 corrigido. É necessária uma
-  atualização compatível do Postman ou uma migração da integração OpenAPI.
-  Não processar templates ou specs de fontes não confiáveis nessa cadeia.
-  [Alerta upstream](https://github.com/advisories/GHSA-qxc2-j82w-r537).
+## Alerta residual: braces
 
-Essas medidas limitam exposição, mas não corrigem os dois pacotes vulneráveis.
-Não executar `npm audit fix --force`: nesta revisão ele propõe downgrades de
-Docusaurus/OpenAPI incompatíveis com a configuração do projeto.
+`braces@3.0.3` sofre exaustão da pilha com padrões profundamente aninhados:
+[GHSA-vfj7-8cjw-p6xm](https://github.com/advisories/GHSA-vfj7-8cjw-p6xm).
+O registro npm consultado nesta revisão ainda publica 3.0.3 como versão mais
+recente, sem correção disponível. `micromatch`, `fast-glob`, `globby`, `chokidar`
+e seus consumidores no Docusaurus propagam o alerta.
 
-## Verificação
+A exposição está nas ferramentas de build e desenvolvimento. O GitHub Pages
+publica os arquivos estáticos gerados; não executa esses pacotes no servidor para
+atender visitantes. Os padrões usados pelo build são definidos no repositório.
+Manter a revisão de mudanças que alterem padrões de arquivos e acompanhar a
+correção upstream. Esta revisão documenta e aceita o alerta residual; não afirma
+que o pacote foi corrigido.
 
-```powershell
-npm.cmd ci --ignore-scripts
-npm.cmd audit
-npm.cmd run build
+O CI continua executando a auditoria como aviso não bloqueante. Não usar
+`npm audit fix --force` para impor downgrades ou alterações incompatíveis ao
+Docusaurus. Consultar uma auditoria nova antes de cada revisão: contagens
+históricas não descrevem necessariamente o registro atual.
+
+## Reproduzir a verificação
+
+```bash
+npm ci
+npm ls tinypool serialize-javascript postcss-selector-parser uuid --all
+npm audit
+npm run lint
+npm run format:check
+npm test
+npm run typecheck
+npm run build
 ```
 
-`--ignore-scripts` contorna o script de instalação do gerador Postman que usa
-comandos incompatíveis com Windows. Não configurar essa opção globalmente.
-O audit continua retornando código diferente de zero enquanto houver alertas.
+`npm audit` retorna código diferente de zero enquanto houver o alerta residual.
+Os relatórios antes/depois foram obtidos com `npm audit --json`; a comparação sem
+overrides foi feita em uma cópia temporária do manifesto e lockfile, sem alterar
+a instalação do projeto. Os relatórios descrevem o registro no momento da revisão.

@@ -7,13 +7,13 @@ Os estudos aparecem em "O que estou estudando", na home e no `/sobre`. Cada um �
 export const ESTUDOS: Estudo[] = [
   {
     tema: 'Kubernetes',
-    status: 'estudando',              // 'estudando' | 'praticando' | 'concluido'
+    status: 'estudando', // 'estudando' | 'praticando' | 'concluido'
     fonte: 'Curso Y (plataforma Z)',
-    desde: '2026-10',                 // AAAA-MM (só ano e mês)
+    desde: '2026-10', // AAAA-MM (só ano e mês)
     nota: 'Uma frase sobre onde você está nesse estudo.',
-    projeto: MEU_PROJETO,             // opcional: mostra o link "→ ver o case"
+    projeto: MEU_PROJETO, // opcional: mostra o link "→ ver o case"
   },
-  {tema: 'System Design', /* ... */},
+  {tema: 'System Design' /* ... */},
 ];
 ```
 

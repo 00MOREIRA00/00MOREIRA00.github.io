@@ -3,19 +3,19 @@
 Estes guias explicam como adicionar conteúdo novo ao site. Eles ficam só no repositório: o
 plugin de documentação está desligado; nada daqui vira página do site.
 
-| Quero adicionar... | Guia |
-| --- | --- |
+| Quero adicionar...                                             | Guia                                         |
+| -------------------------------------------------------------- | -------------------------------------------- |
 | Um projeto (system design, Docker ou fluxo) com página própria | [adicionar-projeto.md](adicionar-projeto.md) |
-| Um projeto de API com documentação de rotas | [adicionar-api.md](adicionar-api.md) |
-| Um tema em "O que estou estudando" | [adicionar-estudo.md](adicionar-estudo.md) |
-| Um post no blog | [adicionar-post.md](adicionar-post.md) |
+| Um projeto de API com documentação de rotas                    | [adicionar-api.md](adicionar-api.md)         |
+| Um tema em "O que estou estudando"                             | [adicionar-estudo.md](adicionar-estudo.md)   |
+| Um post no blog                                                | [adicionar-post.md](adicionar-post.md)       |
 
 ## Onde mora cada dado
 
-| Arquivo | O que guarda |
-| --- | --- |
+| Arquivo           | O que guarda                                                                                 |
+| ----------------- | -------------------------------------------------------------------------------------------- |
 | `src/data/hub.ts` | projetos (`PROJETOS`), estudos (`ESTUDOS`), tipos (`TIPOS`) e o conteúdo do case do newsfeed |
-| `blog/*.md` | posts do blog |
+| `blog/*.md`       | posts do blog                                                                                |
 
 ## Antes de subir qualquer mudança
 

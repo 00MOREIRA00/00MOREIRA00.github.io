@@ -1,0 +1,7 @@
+node_modules/
+build/
+.docusaurus/
+.cache-loader/
+package-lock.json
+# Imagens e SVGs existentes mantêm a exportação original.
+static/

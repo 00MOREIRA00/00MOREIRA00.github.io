@@ -11,13 +11,13 @@ image: /img/blog/mcp/capa-social.jpg
 
 Fala pessoaaaaal, tudo certo?
 
-Algumas semanas atrás, durante o trabalho, surgiu uma discussão sobre um tal de **MCP**. Confesso que o termo me deixou curioso: *“O que é isso, afinal?”*
+Algumas semanas atrás, durante o trabalho, surgiu uma discussão sobre um tal de **MCP**. Confesso que o termo me deixou curioso: _“O que é isso, afinal?”_
 
 Pois bem… fui estudar o assunto, entender a fundo e, claro, trazer aqui um post explicando o que descobri!
 
 Nos últimos tempos, muito se fala sobre **IA generativa**, **LLMs** e suas aplicações. Mas à medida que essas tecnologias evoluem, uma dúvida natural surge:
 
-> *Como essas inteligências realmente se comunicam com o mundo externo?*
+> _Como essas inteligências realmente se comunicam com o mundo externo?_
 
 E é exatamente aí que entra o **MCP — Model Context Protocol**, criado pela **Anthropic**.
 
@@ -53,7 +53,7 @@ Um exemplo prático:
 {
   "jsonrpc": "2.0",
   "method": "getUser",
-  "params": { "id": 123 },
+  "params": {"id": 123},
   "id": 1
 }
 ```
@@ -64,7 +64,7 @@ O servidor MCP entende esse formato, executa a ação e responde algo como:
 {
   "jsonrpc": "2.0",
   "id": 1,
-  "result": { "name": "Alice", "age": 30 }
+  "result": {"name": "Alice", "age": 30}
 }
 ```
 

@@ -20,7 +20,10 @@ export default function Projetos(): ReactNode {
   const semApis = filtro === 'api' && !q && lista.length === 0;
 
   return (
-    <Layout title="Projetos" description="Todos os projetos do hub: system designs, APIs, Docker e fluxos.">
+    <Layout
+      title="Projetos"
+      description="Todos os projetos do hub: system designs, APIs, Docker e fluxos."
+    >
       <main className="wrap cat">
         <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
           <div className="eyebrow">// Hub</div>
@@ -31,7 +34,9 @@ export default function Projetos(): ReactNode {
           </p>
         </div>
         <div className="toolbar">
-          <label htmlFor="busca" className="sr-only">Filtrar projetos</label>
+          <label htmlFor="busca" className="sr-only">
+            Filtrar projetos
+          </label>
           <input
             id="busca"
             type="search"
@@ -41,19 +46,29 @@ export default function Projetos(): ReactNode {
           />
           <div className="seg" role="group" aria-label="Tipo de projeto">
             {FILTROS.map((f) => (
-              <button key={f} type="button" aria-pressed={filtro === f} onClick={() => setFiltro(f)}>
-                {f === 'todos' ? 'Todos' : TIPOS[f].plural} <span className="seg-n">{conta(f)}</span>
+              <button
+                key={f}
+                type="button"
+                aria-pressed={filtro === f}
+                onClick={() => setFiltro(f)}
+              >
+                {f === 'todos' ? 'Todos' : TIPOS[f].plural}{' '}
+                <span className="seg-n">{conta(f)}</span>
               </button>
             ))}
           </div>
         </div>
         {lista.length > 0 ? (
           <div className="cards" style={{marginTop: 0}}>
-            {lista.map((p) => <ProjetoCard key={p.id} p={p} />)}
+            {lista.map((p) => (
+              <ProjetoCard key={p.id} p={p} />
+            ))}
           </div>
         ) : (
           <div className="empty">
-            <strong>{semApis ? 'Nenhuma API publicada ainda.' : 'Nenhum projeto encontrado.'}</strong>
+            <strong>
+              {semApis ? 'Nenhuma API publicada ainda.' : 'Nenhum projeto encontrado.'}
+            </strong>
             <span>
               {semApis
                 ? 'Projetos de API terão uma página com contexto, decisões técnicas e documentação das rotas.'

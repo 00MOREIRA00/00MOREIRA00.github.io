@@ -11,7 +11,9 @@ import {BlogTopo, FiltroTags, PostRow, resumoDe} from '@site/src/components/blog
 export default function BlogListPage(props: Props): ReactNode {
   const {metadata, items} = props;
   return (
-    <HtmlClassNameProvider className={clsx(ThemeClassNames.wrapper.blogPages, ThemeClassNames.page.blogListPage)}>
+    <HtmlClassNameProvider
+      className={clsx(ThemeClassNames.wrapper.blogPages, ThemeClassNames.page.blogListPage)}
+    >
       <PageMetadata title={metadata.blogTitle} description={metadata.blogDescription} />
       <SearchMetadata tag="blog_posts_list" />
       <BlogListPageStructuredData {...props} />

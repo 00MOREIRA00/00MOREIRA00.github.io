@@ -51,7 +51,6 @@ A arquitetura funciona por meio de uma rede de serviços conectados, cada um com
 Isso é “simples”: eles se comunicam através de protocolos de comunicação amplamente consolidados no mercado — como REST e gRPC — quando precisamos de interações diretas entre serviços, geralmente de forma síncrona.
 Mas a comunicação não acontece apenas assim: muitos sistemas distribuídos também utilizam filas e plataformas de mensageria (como RabbitMQ, Kafka, SQS, entre outros) para permitir troca de informações de maneira assíncrona.
 
-
 Dessa forma, os serviços podem enviar, receber ou reagir a eventos, seja em chamadas diretas ou por meio de mensagens enfileiradas, mantendo o fluxo da aplicação funcional, resiliente e performático.
 
 Um forte aliado da arquitetura distribuída são os balanceadores de carga, que garantem o desempenho ideal e evitam sobrecarga, distribuindo as requisições entre diferentes nós da mesma aplicação. Mas isso é um assunto para entrarmos mais a fundo em outro momento.

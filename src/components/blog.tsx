@@ -14,13 +14,23 @@ const IconRss = () => (
 );
 
 /** Cabeçalho das páginas do blog (lista, tag e vazio). */
-export function BlogTopo({titulo = 'Blog', lead, rss = true}: {titulo?: string; lead: ReactNode; rss?: boolean}): ReactNode {
+export function BlogTopo({
+  titulo = 'Blog',
+  lead,
+  rss = true,
+}: {
+  titulo?: string;
+  lead: ReactNode;
+  rss?: boolean;
+}): ReactNode {
   return (
     <div className="blog-head">
       <div style={{display: 'flex', flexDirection: 'column', gap: 10}}>
         <div className="eyebrow">// Blog</div>
         <h1>{titulo}</h1>
-        <p className="lead" style={{margin: '6px 0 0'}}>{lead}</p>
+        <p className="lead" style={{margin: '6px 0 0'}}>
+          {lead}
+        </p>
       </div>
       {/* o feed só existe quando há posts */}
       {rss && (
@@ -42,7 +52,11 @@ export function FiltroTags({atual}: {atual?: string}): ReactNode {
         Todos <span className="seg-n">{total}</span>
       </Link>
       {tags.map((t) => (
-        <Link key={t.permalink} to={t.permalink} aria-current={atual === t.permalink ? 'page' : undefined}>
+        <Link
+          key={t.permalink}
+          to={t.permalink}
+          aria-current={atual === t.permalink ? 'page' : undefined}
+        >
           #{t.label} <span className="seg-n">{t.count}</span>
         </Link>
       ))}
