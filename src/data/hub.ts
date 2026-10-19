@@ -1,3 +1,5 @@
+import {NEWSFEED_FALLBACK} from './newsfeed-meta';
+
 /**
  * Conteúdo do hub: projetos, estudos e perfil.
  *
@@ -46,7 +48,7 @@ export const NEWSFEED: Projeto = {
     'Estudo de caso completo de system design: requisitos, estimativa de capacidade, design de API, arquitetura de alto nível e deep dive de um feed de rede social.',
   repo: NEWSFEED_REPO,
   fonte: 'System Design Masterclass (Packt)',
-  atualizado: '2026-10-02',
+  atualizado: NEWSFEED_FALLBACK.atualizado,
   tags: ['system-design', 'fan-out', 'nosql', 'graphdb', 'cdn', 'cache'],
   href: '/projetos/instagram-newsfeed',
 };
@@ -64,28 +66,6 @@ export const POSTGRESQL_PGADMIN: Projeto = {
 };
 
 export const PROJETOS: Projeto[] = [POSTGRESQL_PGADMIN, NEWSFEED];
-
-export const NEWSFEED_ARQUIVOS: [string, string][] = [
-  ['docs/01-requisitos.md', 'Requisitos funcionais e não funcionais'],
-  ['docs/02-capacity-estimation.md', 'Estimativa de capacidade'],
-  ['docs/03-api-design.md', 'Design das APIs REST'],
-  ['docs/04-high-level-design.md', 'Arquitetura de alto nível e fluxos'],
-  ['docs/05-deep-dive.md', 'Bancos, pre-signed URLs e mídia'],
-  ['docs/06-simulacao-entrevista.md', 'Simulação de entrevista'],
-  ['docs/07-quiz.md', 'Quiz de revisão'],
-  ['glossario.md', 'Glossário bilíngue EN → PT-BR'],
-  ['database/README.md', 'Comparativo dos bancos + JSON Schemas'],
-  ['newsfeed.drawio', 'Rascunho editável dos fluxos (draw.io)'],
-];
-
-export const NEWSFEED_COMMITS: [string, string][] = [
-  ['2026-09-15', 'Início do repositório'],
-  ['2026-09-17', 'Documentação de requisitos'],
-  ['2026-09-21', 'Documentação de capacidade'],
-  ['2026-09-23', 'Mais estimativas'],
-  ['2026-09-25', 'Documentação de diagramas'],
-  ['2026-10-02', 'Material do case'],
-];
 
 export const REQ_FUNCIONAIS: [string, string][] = [
   ['Criar posts', 'Texto, imagem ou vídeo.'],

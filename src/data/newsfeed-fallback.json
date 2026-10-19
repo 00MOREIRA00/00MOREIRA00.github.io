@@ -1,0 +1,71 @@
+{
+  "atualizado": "2026-10-02",
+  "arquivos": [
+    [
+      "docs/01-requisitos.md",
+      "Requisitos funcionais e não funcionais"
+    ],
+    [
+      "docs/02-capacity-estimation.md",
+      "Estimativa de capacidade"
+    ],
+    [
+      "docs/03-api-design.md",
+      "Design das APIs REST"
+    ],
+    [
+      "docs/04-high-level-design.md",
+      "Arquitetura de alto nível e fluxos"
+    ],
+    [
+      "docs/05-deep-dive.md",
+      "Bancos, pre-signed URLs e mídia"
+    ],
+    [
+      "docs/06-simulacao-entrevista.md",
+      "Simulação de entrevista"
+    ],
+    [
+      "docs/07-quiz.md",
+      "Quiz de revisão"
+    ],
+    [
+      "glossario.md",
+      "Glossário bilíngue EN → PT-BR"
+    ],
+    [
+      "database/README.md",
+      "Comparativo dos bancos + JSON Schemas"
+    ],
+    [
+      "newsfeed.drawio",
+      "Rascunho editável dos fluxos (draw.io)"
+    ]
+  ],
+  "commits": [
+    [
+      "2026-09-15",
+      "Initial commit"
+    ],
+    [
+      "2026-09-17",
+      "docs: adicionando documentacao de requisitos"
+    ],
+    [
+      "2026-09-22",
+      "docs: adicionando documentacao de capacidade"
+    ],
+    [
+      "2026-09-23",
+      "docs: adicionando mais estimativa"
+    ],
+    [
+      "2026-09-25",
+      "docs: adicionando documentacao de diagrama"
+    ],
+    [
+      "2026-10-02",
+      "docs: adicionando material do case"
+    ]
+  ]
+}

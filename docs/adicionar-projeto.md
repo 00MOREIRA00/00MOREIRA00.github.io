@@ -64,8 +64,9 @@ dados em `hub.ts`, visual no componente.
   acrescente o tipo ali, senão ele só aparece em "Todos".
 - **Destaque da home:** o card "Estudo de caso" em `src/pages/index.tsx` aponta fixo para
   `NEWSFEED`. Troque se quiser destacar o projeto novo.
-- **Histórico do repositório:** a lista na home e no `/sobre` usa `NEWSFEED_COMMITS`. Ela não
-  muda com projetos novos.
+- **Metadados do Newsfeed:** data de atualização, documentação e últimos seis commits
+  vêm do GitHub no build, pelo plugin `src/plugins/newsfeed-meta.ts`. O conteúdo editorial
+  (requisitos, quiz e arquitetura) continua em `hub.ts`. Veja o fluxo abaixo.
 - **Tipo novo** (além de design, api, docker e fluxo): acrescente em `TipoProjeto` e `TIPOS`
   (`src/data/hub.ts`) e crie as classes `.tb-<tipo>` e `.card-<tipo>` em `src/css/custom.css`.
 
@@ -76,3 +77,32 @@ npm start           # veja o card em /projetos e a página em /projetos/<id>
 npm run typecheck
 npm run build
 ```
+
+## Metadados automáticos do case Newsfeed
+
+O build consulta a branch `main` do repositório informado em `NEWSFEED.repo`:
+
+- a data do último commit alimenta o case e os cards do projeto;
+- a árvore de arquivos alimenta a lista de Markdown/MDX em `docs/`, incluindo subpastas,
+  mais `glossario.md`, `database/README.md` e `newsfeed.drawio`, quando presentes;
+- os seis commits mais recentes alimentam o histórico no case, home e Sobre.
+
+As descrições conhecidas dos arquivos são preservadas a partir do snapshot. Arquivos novos
+recebem um título baseado no nome. Os demais projetos continuam com metadados editoriais.
+
+As chamadas acontecem apenas no build, com timeout de oito segundos por consulta.
+O workflow fornece `GITHUB_TOKEN` com permissão de leitura; localmente ele é opcional
+para repositórios públicos. O token nunca é enviado aos visitantes.
+
+Se uma consulta falhar (rede, limite da API, resposta inválida ou árvore truncada),
+aquela parte usa `src/data/newsfeed-fallback.json`. Esse snapshot versionado contém
+metadados reais consultados na implementação; pode ser atualizado quando conveniente,
+mas o funcionamento normal não depende de edições manuais. Uma falha aparece como aviso
+no log, sem derrubar o build. A outra consulta continua aproveitando os dados atuais.
+
+O site se atualiza em push na `main`, execução manual do workflow na `main` ou toda
+segunda-feira às 09h UTC (06h em Brasília). Alterações no repositório de origem aparecem
+no próximo build, sem consultas no navegador. Os dados da API não são gravados em `hub.ts`.
+
+`npm test` verifica os cenários de sucesso, falhas parciais, limite da API, timeout,
+respostas inválidas e fallback. Rode também `npm run typecheck` e `npm run build`.

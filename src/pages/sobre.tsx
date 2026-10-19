@@ -1,8 +1,9 @@
+import {useNewsfeedMeta} from '@site/src/components/useNewsfeed';
 import {useState, type ReactNode} from 'react';
 import Layout from '@theme/Layout';
 import {EstudoCard, LogList} from '@site/src/components/hub';
 import Avatar from '@site/src/components/Avatar';
-import {ESTUDOS, NEWSFEED_COMMITS, PERFIL} from '@site/src/data/hub';
+import {ESTUDOS, PERFIL} from '@site/src/data/hub';
 
 
 const IconGitHub = () => (
@@ -34,6 +35,7 @@ function CopiarEmail(): ReactNode {
 }
 
 export default function Sobre(): ReactNode {
+  const {commits} = useNewsfeedMeta();
   return (
     <Layout title="Sobre" description={`${PERFIL.nome}, ${PERFIL.cargo} com ${PERFIL.anosExperiencia} anos de experiência.`}>
       <main className="wrap cat about">
@@ -74,7 +76,7 @@ export default function Sobre(): ReactNode {
             {ESTUDOS.map((e) => <EstudoCard key={e.tema} e={e} />)}
             <div className="block" style={{gap: 10}}>
               <div className="step-tag">Histórico do repositório</div>
-              <LogList itens={NEWSFEED_COMMITS} />
+              <LogList itens={commits} />
             </div>
           </div>
         </div>

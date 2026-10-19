@@ -53,7 +53,7 @@ const config: Config = {
     ],
   ],
 
-  plugins: ['./src/plugins/blog-extra.ts'],
+  plugins: ['./src/plugins/blog-extra.ts', './src/plugins/newsfeed-meta.ts'],
 
   themeConfig: {
     colorMode: {defaultMode: 'dark', respectPrefersColorScheme: true},

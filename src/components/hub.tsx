@@ -1,13 +1,15 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
+import {useNewsfeedMeta} from './useNewsfeed';
 import {
-  PROJETOS, TIPOS, fmtData, fmtDia, fmtMes,
+  NEWSFEED, PROJETOS, TIPOS, fmtData, fmtDia, fmtMes,
   type Estudo, type Projeto, type TipoProjeto,
 } from '@site/src/data/hub';
 
 /** Projetos editoriais do portfólio, incluindo projetos de API. */
 export function useTodosProjetos(): Projeto[] {
-  return PROJETOS;
+  const meta = useNewsfeedMeta();
+  return PROJETOS.map((p) => p.id === NEWSFEED.id ? {...p, atualizado: meta.atualizado} : p);
 }
 
 export const TypeBadge = ({tipo}: {tipo: TipoProjeto}) => (
@@ -23,11 +25,13 @@ export const Dots = () => (
 );
 
 export function ProjetoCard({p, destaque = false}: {p: Projeto; destaque?: boolean}): ReactNode {
+  const meta = useNewsfeedMeta();
+  const atualizado = p.id === NEWSFEED.id ? meta.atualizado : p.atualizado;
   return (
     <Link to={p.href} className={`hcard card-${p.tipo} ${destaque ? 'card-feature' : ''}`}>
       <span className="card-head">
         <TypeBadge tipo={p.tipo} />
-        {p.atualizado && <span className="card-ver">atualizado em {fmtData(p.atualizado)}</span>}
+        {atualizado && <span className="card-ver">atualizado em {fmtData(atualizado)}</span>}
       </span>
       <span className="card-name">{p.nome}</span>
       <p>{p.descricao}</p>

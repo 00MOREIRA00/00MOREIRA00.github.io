@@ -1,10 +1,11 @@
+import {useNewsfeedMeta} from '@site/src/components/useNewsfeed';
 import {useEffect, useState, type ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import AccessibleTabs from './AccessibleTabs';
 import {Dots, LogList, TypeBadge} from '@site/src/components/hub';
 import {
   ARMAZENAMENTO, BANCOS, CAPACIDADE, COLUNAS, ENDPOINTS, ENTREVISTA, FLUXOS, NEWSFEED,
-  NEWSFEED_ARQUIVOS, NEWSFEED_COMMITS, NEWSFEED_URL, QUIZ, REQ_FUNCIONAIS, REQ_NAO_FUNCIONAIS,
+  NEWSFEED_URL, QUIZ, REQ_FUNCIONAIS, REQ_NAO_FUNCIONAIS,
   TIPOS, fmtData, newsfeedFile,
 } from '@site/src/data/hub';
 
@@ -47,6 +48,7 @@ function Json({value}: {value: unknown}): ReactNode {
 /* ---------------- Abas ---------------- */
 
 function Visao(): ReactNode {
+  const {arquivos, commits} = useNewsfeedMeta();
   return (
     <div className="two">
       <div className="block">
@@ -67,12 +69,12 @@ function Visao(): ReactNode {
       <div className="block">
         <h2>Arquivos do repositório</h2>
         <div className="ov-list">
-          {NEWSFEED_ARQUIVOS.map(([path, t]) => (
+          {arquivos.map(([path, t]) => (
             <a key={path} href={newsfeedFile(path)}><span className="mono">{path}</span><span className="s">{t}</span></a>
           ))}
         </div>
         <h2 style={{marginTop: 8}}>Linha do tempo</h2>
-        <LogList itens={NEWSFEED_COMMITS} />
+        <LogList itens={commits} />
       </div>
     </div>
   );
@@ -345,7 +347,8 @@ export default function NewsfeedCase(): ReactNode {
   };
   const i = ABAS.findIndex(([id]) => id === aba);
   const Conteudo = CONTEUDO[aba];
-  const p = NEWSFEED;
+  const meta = useNewsfeedMeta();
+  const p = {...NEWSFEED, atualizado: meta.atualizado};
 
   return (
     <main className="wrap cat proj">
