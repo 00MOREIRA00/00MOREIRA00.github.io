@@ -68,8 +68,45 @@ O preço é a consistência eventual.
 
 Os tipos são `tip` (verde), `note` e `info` (azul) e `warning` e `danger` (amarelo).
 
-Imagens ficam junto do post: crie uma pasta `blog/2026-10-15-fan-out-na-escrita/` com um
-`index.md` e as imagens dentro, e use `![descrição](./diagrama.png)`.
+### Imagens e compartilhamento
+
+Salve as imagens em `static/img/blog/<slug>/`. Use WebP no corpo do artigo,
+com largura máxima de 1600 px e até 200 KB por arquivo. Para diagramas com texto,
+prefira WebP sem perdas. Não amplie imagens menores só para atingir essa largura.
+
+Informe as dimensões reais para reservar espaço durante o carregamento:
+
+```mdx
+<img src="/img/blog/meu-post/capa.webp" alt="Descrição da capa" width="1024" height="683" loading="eager" decoding="async" />
+
+<img src="/img/blog/meu-post/diagrama.webp" alt="Descrição do diagrama" width="800" height="300" loading="lazy" decoding="async" />
+```
+
+A primeira imagem usa `eager`; imagens abaixo dela usam `lazy`. A sintaxe acima
+funciona também nos arquivos `.md`, processados pelo Docusaurus como MDX.
+
+Mantenha uma versão JPEG otimizada da capa para os previews sociais e indique-a
+no front matter. Essa versão não precisa ser carregada no corpo do artigo:
+
+```yaml
+image: /img/blog/meu-post/capa-social.jpg
+```
+
+Para converter localmente, uma opção é Python com Pillow (instalado separadamente):
+
+```python
+from PIL import Image
+
+imagem = Image.open("capa-original.png").convert("RGB")
+imagem.thumbnail((1600, 1600), Image.Resampling.LANCZOS)
+imagem.save("capa.webp", "WEBP", quality=82, method=6)
+imagem.save("capa-social.jpg", "JPEG", quality=85, optimize=True, progressive=True)
+# Para diagramas: imagem.save("diagrama.webp", "WEBP", lossless=True, method=6)
+```
+
+Confira a legibilidade e o tamanho dos arquivos antes de publicar. O avatar do
+perfil e dos posts fica em `static/img/avatar.webp` (192 × 192); ao trocar a foto,
+atualize esse arquivo para que o site continue sem depender do GitHub para carregá-la.
 
 ## 4. Confira e suba
 

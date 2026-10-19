@@ -4,10 +4,10 @@ description: Entenda os pilares da observabilidade — logs, métricas e traces 
 authors: roberto
 tags: [observabilidade, python, desenvolvimento-software]
 slug: observabilidade
-image: /img/blog/observabilidade/capa.png
+image: /img/blog/observabilidade/capa-social.jpg
 ---
 
-![Imagem de abertura do artigo sobre observabilidade.](/img/blog/observabilidade/capa.png)
+<img src="/img/blog/observabilidade/capa.webp" alt="Imagem de abertura do artigo sobre observabilidade." width="1024" height="683" loading="eager" decoding="async" />
 
 Fala pessoaaaaal, tudo certo?
 

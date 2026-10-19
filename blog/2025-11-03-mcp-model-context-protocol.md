@@ -4,10 +4,10 @@ description: Entenda como o MCP conecta aplicações de IA a fontes de dados ext
 authors: roberto
 tags: [model-context-protocol, inteligencia-artificial, desenvolvimento-software]
 slug: mcp-model-context-protocol
-image: /img/blog/mcp/capa.png
+image: /img/blog/mcp/capa-social.jpg
 ---
 
-![Model Context Protocol: imagem de abertura do artigo.](/img/blog/mcp/capa.png)
+<img src="/img/blog/mcp/capa.webp" alt="Model Context Protocol: imagem de abertura do artigo." width="877" height="646" loading="eager" decoding="async" />
 
 Fala pessoaaaaal, tudo certo?
 
@@ -39,7 +39,7 @@ A IA traduz as requisições para a linguagem que o servidor MCP entende, esse s
 
 Toda essa conversa acontece usando o protocolo **JSON-RPC**, que padroniza as mensagens trocadas entre a IA e o servidor MCP.
 
-![Diagrama do fluxo de comunicação entre a aplicação de IA, o servidor MCP e fontes de dados externas.](/img/blog/mcp/fluxo-mcp.png)
+<img src="/img/blog/mcp/fluxo-mcp.webp" alt="Diagrama do fluxo de comunicação entre a aplicação de IA, o servidor MCP e fontes de dados externas." width="1018" height="220" loading="lazy" decoding="async" />
 
 ## JSON RPC
 

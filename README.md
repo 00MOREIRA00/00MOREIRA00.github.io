@@ -1,7 +1,7 @@
 # 00moreira00.github.io
 
 Hub de projetos e estudos do Roberto Neto, feito com [Docusaurus](https://docusaurus.io).
-No ar em **https://00moreira00.github.io**.
+No ar em **https://rneto.dev.br**.
 
 Hoje o hub tem um estudo de caso de system design
 ([Newsfeed estilo Instagram](https://github.com/00MOREIRA00/packt-system-design-masterclass-instagram-newsfeed)).
