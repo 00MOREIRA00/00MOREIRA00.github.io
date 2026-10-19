@@ -2,7 +2,7 @@ import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
 import Layout from '@theme/Layout';
 import {
-  Dots, EstudoCard, LogList, ProjetoCard, useTodosProjetos, useTotalEndpoints,
+  Dots, EstudoCard, LogList, ProjetoCard, useTodosProjetos,
 } from '@site/src/components/hub';
 import {PostRow, useBlogExtra} from '@site/src/components/blog';
 import {ESTUDOS, GH_USER, NEWSFEED, NEWSFEED_COMMITS, NEWSFEED_URL} from '@site/src/data/hub';
@@ -11,7 +11,7 @@ const pad = (k: string, w: number) => k + ' '.repeat(Math.max(1, w - k.length))
 
 export default function Home(): ReactNode {
   const todos = useTodosProjetos();
-  const {recentes} = useBlogExtra();
+  const {recentes, total} = useBlogExtra();
   const conta = (...tipos: string[]) => todos.filter((p) => tipos.includes(p.tipo)).length;
   const porTipo = (tipo: string) => todos.filter((p) => p.tipo === tipo).map((p) => p.id);
   const lista = (ids: string[]) =>
@@ -63,8 +63,8 @@ export default function Home(): ReactNode {
 
         <section className="wrap">
           <div className="strip">
-            <div className="stat"><div className="stat-num t-cyan">{conta('api')}</div><div className="stat-label">APIs publicadas</div></div>
-            <div className="stat"><div className="stat-num t-lime">{useTotalEndpoints()}</div><div className="stat-label">endpoints documentados</div></div>
+            <div className="stat"><div className="stat-num t-cyan">{conta('api')}</div><div className="stat-label">projetos de API</div></div>
+            <div className="stat"><div className="stat-num t-lime">{total}</div><div className="stat-label">posts no blog</div></div>
             <div className="stat"><div className="stat-num t-cyan">{conta('design')}</div><div className="stat-label">system designs</div></div>
             <div className="stat"><div className="stat-num t-lime">{conta('docker', 'fluxo')}</div><div className="stat-label">ambientes Docker e fluxos</div></div>
           </div>

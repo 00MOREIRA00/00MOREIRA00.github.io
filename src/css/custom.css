@@ -344,15 +344,6 @@ main h1, main h2, main h3 { font-family: inherit; }
   .navbar__brand { margin-right: 16px; }
 }
 
-/* Selos de método HTTP na sidebar da referência de APIs (quando houver) */
-.menu__list-item.api-method > .menu__link { display: flex; align-items: center; gap: 10px; }
-.menu__list-item.api-method > .menu__link::before { flex: 0 0 46px; font: 700 10.5px var(--mono); text-align: center; padding: 2px 0; border-radius: 4px; }
-.api-method.get > .menu__link::before { content: 'GET'; background: var(--get-bg); color: var(--get-fg); }
-.api-method.post > .menu__link::before { content: 'POST'; background: var(--post-bg); color: var(--post-fg); }
-.api-method.put > .menu__link::before { content: 'PUT'; background: var(--put-bg); color: var(--put-fg); }
-.api-method.patch > .menu__link::before { content: 'PATCH'; background: var(--post-bg); color: var(--post-fg); }
-.api-method.delete > .menu__link::before { content: 'DEL'; background: var(--del-bg); color: var(--del-fg); }
-
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 /* --------- Ajustes de navegação --------- */
@@ -487,3 +478,7 @@ main h1, main h2, main h3 { font-family: inherit; }
 @keyframes scan { 0% { transform: translateY(-100%); } 100% { transform: translateY(1200%); } }
 @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+
+/* Painéis inativos continuam ocultos mesmo quando o painel usa display: flex. */
+[role="tabpanel"][hidden] { display: none; }
+.flowpanel { display: flex; flex-direction: column; gap: 28px; }

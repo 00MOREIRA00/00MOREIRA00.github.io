@@ -1,5 +1,6 @@
 import {useEffect, useState, type ReactNode} from 'react';
 import Link from '@docusaurus/Link';
+import AccessibleTabs from './AccessibleTabs';
 import {Dots, LogList, TypeBadge} from '@site/src/components/hub';
 import {
   ARMAZENAMENTO, BANCOS, CAPACIDADE, COLUNAS, ENDPOINTS, ENTREVISTA, FLUXOS, NEWSFEED,
@@ -180,44 +181,42 @@ function Arquitetura(): ReactNode {
   const agora = new Set(f.passos[passo][1]);
   return (
     <>
-      <div className="flowpick" role="tablist" aria-label="Fluxos">
-        {FLUXOS.map((x) => (
-          <button key={x.id} type="button" role="tab" aria-selected={x.id === fluxoId}
-            onClick={() => { setFluxoId(x.id); setPasso(0); }}>{x.titulo}</button>
-        ))}
-      </div>
-      <p className="desc" style={{marginTop: 4}}>{f.resumo}</p>
-      <div className="archwrap">
-        <div className="board" aria-label="Componentes da arquitetura; os destacados participam do fluxo">
-          {COLUNAS.map(([col, comps]) => (
-            <div className="bcol" key={col}>
-              <div className="tier-label">{col}</div>
-              {comps.map(([id, nome, sub]) => (
-                <div key={id} className={`comp ${usados[id] ? 'on' : ''} ${agora.has(id) ? 'now' : ''}`}>
-                  <strong>{nome}</strong>
-                  {sub && <span>{sub}</span>}
-                  {usados[id] && <em>{usados[id].join(' · ')}</em>}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-        <div className="stepper">
-          <ol>
-            {f.passos.map(([t], i) => (
-              <li key={i}>
-                <button type="button" aria-current={i === passo} onClick={() => setPasso(i)}>
-                  <span className="sn">{i + 1}</span><span>{t}</span>
-                </button>
-              </li>
+      <AccessibleTabs tabs={FLUXOS.map((x) => ({id: x.id, label: x.titulo}))}
+        selected={fluxoId} onSelect={(id) => { setFluxoId(id); setPasso(0); }}
+        className="flowpick" label="Fluxos" panelClassName="flowpanel">
+        <p className="desc" style={{marginTop: 4}}>{f.resumo}</p>
+        <div className="archwrap">
+          <div className="board" aria-label="Componentes da arquitetura; os destacados participam do fluxo">
+            {COLUNAS.map(([col, comps]) => (
+              <div className="bcol" key={col}>
+                <div className="tier-label">{col}</div>
+                {comps.map(([id, nome, sub]) => (
+                  <div key={id} className={`comp ${usados[id] ? 'on' : ''} ${agora.has(id) ? 'now' : ''}`}>
+                    <strong>{nome}</strong>
+                    {sub && <span>{sub}</span>}
+                    {usados[id] && <em>{usados[id].join(' · ')}</em>}
+                  </div>
+                ))}
+              </div>
             ))}
-          </ol>
-          <div className="pager" style={{margin: 0}}>
-            <button type="button" disabled={passo === 0} onClick={() => setPasso(passo - 1)}>← passo anterior</button>
-            <button type="button" className="next" disabled={passo === f.passos.length - 1} onClick={() => setPasso(passo + 1)}>próximo passo →</button>
+          </div>
+          <div className="stepper">
+            <ol>
+              {f.passos.map(([t], i) => (
+                <li key={i}>
+                  <button type="button" aria-current={i === passo} onClick={() => setPasso(i)}>
+                    <span className="sn">{i + 1}</span><span>{t}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+            <div className="pager" style={{margin: 0}}>
+              <button type="button" disabled={passo === 0} onClick={() => setPasso(passo - 1)}>← passo anterior</button>
+              <button type="button" className="next" disabled={passo === f.passos.length - 1} onClick={() => setPasso(passo + 1)}>próximo passo →</button>
+            </div>
           </div>
         </div>
-      </div>
+      </AccessibleTabs>
       <div className="tip">
         <strong>Trade-off do fan-out na escrita:</strong> a leitura vira só uma busca em cache, mas cada
         post gera uma gravação por seguidor. Para contas com milhões de seguidores, a alternativa é o
@@ -365,14 +364,12 @@ export default function NewsfeedCase(): ReactNode {
           curso: {p.fonte} · repo: <a href={NEWSFEED_URL}>github.com/{p.repo}</a> · atualizado em {fmtData(p.atualizado)}
         </p>
       </div>
-      <nav className="ctabs" id="abas" role="tablist" aria-label="Seções do case">
-        {ABAS.map(([id, l], n) => (
-          <button key={id} type="button" role="tab" aria-selected={aba === id} onClick={() => ir(id)}>
-            <span>{String(n + 1).padStart(2, '0')}</span>{l}
-          </button>
-        ))}
-      </nav>
-      <div className="cbody" role="tabpanel"><Conteudo /></div>
+      <AccessibleTabs tabs={ABAS.map(([id, label], n) => ({
+        id, label: <><span>{String(n + 1).padStart(2, '0')}</span>{label}</>,
+      }))} selected={aba} onSelect={ir} className="ctabs" id="abas"
+        label="Seções do case" panelClassName="cbody">
+        <Conteudo />
+      </AccessibleTabs>
       <div className="pager">
         {i > 0 ? <button type="button" onClick={() => ir(ABAS[i - 1][0])}>← {ABAS[i - 1][1]}</button> : <span />}
         {i < ABAS.length - 1 && <button type="button" className="next" onClick={() => ir(ABAS[i + 1][0])}>{ABAS[i + 1][1]} →</button>}

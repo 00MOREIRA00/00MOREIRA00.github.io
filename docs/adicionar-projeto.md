@@ -14,7 +14,7 @@ Em `src/data/hub.ts`, crie a constante do projeto e coloque-a em `PROJETOS`:
 ```ts
 export const MEU_PROJETO: Projeto = {
   id: 'url-shortener',                  // vira a URL: /projetos/url-shortener
-  tipo: 'design',                       // 'design' | 'docker' | 'fluxo' ('api' é só pelo catálogo)
+  tipo: 'design',                       // 'design' | 'api' | 'docker' | 'fluxo'
   nome: 'Encurtador de URL',
   descricao: 'Uma ou duas frases sobre o que o projeto resolve.',
   repo: `${GH_USER}/url-shortener`,     // "usuario/repo" no GitHub

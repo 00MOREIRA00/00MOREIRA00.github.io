@@ -1,5 +1,21 @@
 # Segurança das dependências
 
+## Estado após a retirada do Swagger
+
+O portal passou a ser um blog e portfólio. Foram removidos os plugins OpenAPI,
+a geração de referência e a sincronização de specs. Projetos de API podem
+documentar rotas nas próprias páginas.
+
+A auditoria executada pelo npm após a remoção reportou **29 vulnerabilidades altas**
+e nenhuma crítica. Os overrides foram mantidos nesta alteração; sua revisão
+continua sendo uma tarefa separada. O CI executa `npm audit --audit-level=critical`
+como aviso não bloqueante, além de typecheck e build bloqueantes.
+
+## Histórico da revisão anterior (9 de outubro de 2026)
+
+Os detalhes abaixo descrevem a árvore de dependências anterior à remoção dos
+plugins OpenAPI, incluindo a cadeia Postman que deixou de fazer parte do portal.
+
 Revisão em 9 de outubro de 2026. O `npm audit` passou de 53 pacotes afetados
 (16 críticos, 21 altos e 16 moderados) para 35 altos, associados a dois alertas.
 Não há alertas críticos ou moderados na auditoria após as atualizações.

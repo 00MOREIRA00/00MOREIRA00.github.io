@@ -5,8 +5,9 @@ No ar em **https://00moreira00.github.io**.
 
 Hoje o hub tem um estudo de caso de system design
 ([Newsfeed estilo Instagram](https://github.com/00MOREIRA00/packt-system-design-masterclass-instagram-newsfeed)).
-A estrutura já está pronta para receber APIs (referência estilo Swagger, gerada do OpenAPI),
-ambientes Docker e fluxos.
+O portal é um blog e portfólio de projetos, incluindo APIs, ambientes Docker e fluxos.
+Projetos de API podem documentar suas rotas na própria página, com métodos, exemplos e links
+para o repositório ou documentação externa.
 
 ## Rodar localmente
 
@@ -21,7 +22,8 @@ npm run build    # gera o site estático em build/
 ## Publicar
 
 O workflow `.github/workflows/deploy.yml` gera o site e publica no GitHub Pages a cada push na
-`main` (e também manualmente ou uma vez por dia).
+`main` (e também manualmente na `main`). PRs para `main` executam typecheck e build;
+a auditoria de dependências gera avisos sem bloquear. PRs não publicam o site.
 
 Na primeira vez: em **Settings › Pages**, escolha **Source: GitHub Actions**.
 
@@ -41,13 +43,12 @@ Na primeira vez: em **Settings › Pages**, escolha **Source: GitHub Actions**.
 | `src/plugins/blog-extra.ts` | "Últimos posts" na home e a página do blog vazio |
 | `src/theme/Footer/index.tsx` | rodapé |
 | `src/css/custom.css` | tema (cores claro/escuro, fontes, grade de fundo) |
-| `src/data/catalogo.json` | lista de APIs (vazia por enquanto) |
 
 ## Adicionar conteúdo
 
 Os guias passo a passo ficam em [`docs/`](docs/README.md):
 
 - [Adicionar um projeto](docs/adicionar-projeto.md) (system design, Docker ou fluxo)
-- [Adicionar uma API](docs/adicionar-api.md) (referência estilo Swagger a partir do OpenAPI)
+- [Adicionar uma API](docs/adicionar-api.md) (projeto com documentação de rotas)
 - [Adicionar um estudo](docs/adicionar-estudo.md)
 - [Adicionar um post no blog](docs/adicionar-post.md)

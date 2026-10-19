@@ -56,7 +56,7 @@ export default function Projetos(): ReactNode {
             <strong>{semApis ? 'Nenhuma API publicada ainda.' : 'Nenhum projeto encontrado.'}</strong>
             <span>
               {semApis
-                ? 'Quando um repositório tiver um openapi.yaml, ele aparece aqui com a referência estilo Swagger.'
+                ? 'Projetos de API terão uma página com contexto, decisões técnicas e documentação das rotas.'
                 : 'Limpe o filtro para ver todos.'}
             </span>
           </div>

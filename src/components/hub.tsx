@@ -1,36 +1,13 @@
 import type {ReactNode} from 'react';
 import Link from '@docusaurus/Link';
-import {usePluginData} from '@docusaurus/useGlobalData';
-import {apis} from '@site/src/data/apis';
-import type {ApiMeta} from '@site/src/plugins/api-meta';
 import {
   PROJETOS, TIPOS, fmtData, fmtDia, fmtMes,
   type Estudo, type Projeto, type TipoProjeto,
 } from '@site/src/data/hub';
 
-/** Projetos do hub + APIs do catálogo (cada API vira um card do tipo "api"). */
+/** Projetos editoriais do portfólio, incluindo projetos de API. */
 export function useTodosProjetos(): Projeto[] {
-  const meta = (usePluginData('api-meta') ?? []) as ApiMeta[];
-  const daApi: Projeto[] = apis.map((a) => {
-    const m = meta.find((x) => x.id === a.id);
-    return {
-      id: a.id,
-      tipo: 'api',
-      nome: a.name,
-      descricao: a.description,
-      repo: a.repo,
-      atualizado: '',
-      tags: ['openapi', ...(m ? [`v${m.version}`, `${m.endpoints} endpoints`] : [])],
-      href: `/docs/api/${a.id}`,
-    };
-  });
-  return [...daApi, ...PROJETOS];
-}
-
-/** Total de endpoints documentados, lido das specs no build. */
-export function useTotalEndpoints(): number {
-  const meta = (usePluginData('api-meta') ?? []) as ApiMeta[];
-  return meta.reduce((n, m) => n + m.endpoints, 0);
+  return PROJETOS;
 }
 
 export const TypeBadge = ({tipo}: {tipo: TipoProjeto}) => (
